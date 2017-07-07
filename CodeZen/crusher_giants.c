@@ -2,22 +2,31 @@
 #include <string.h>
 
 int main(){
-  int n, i, t=0;
+  int n, i;
   char a[20];
   scanf("%s", a);
   n = strlen(a);
-  int c = 2;
-  int g = 0;
+  int c = 0;
   for(i=0; i<n; i++){
-    if(a[i]=='G'){
-      c++;
-      g++;
-    }
-    else if(a[i]=='C'){
-      if(c>4)
-        t+=c-4;
-      c=0;
+    if(a[i]=='C'){
+      if(i-2>=0 && a[i-2]=='G'){
+        a[i-2]='_';
+        c++;
+      }
+      if(i-1>=0 && a[i-1]=='G'){
+        a[i-1]='_';
+        c++;
+      }
+      if(i+2<n && a[i+2]=='G'){
+        a[i+2]='_';
+        c++;
+      }
+      if(i+1<n && a[i+1]=='G'){
+        a[i+1]='_';
+        c++;
+      }
     }
   }
-  printf("%d\n", g-t);
+  printf("%d\n", c);
+  return 0;
 }
